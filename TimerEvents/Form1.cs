@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TimerEvents
@@ -15,6 +8,22 @@ namespace TimerEvents
         public Form1()
         {
             InitializeComponent();
+            textBox1.Hide();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer1.Tick += new EventHandler(t_Tick);
+        }
+
+        void t_Tick(object sender, EventArgs e)
+        {
+            progressBar1.Value += 10;
+            if (progressBar1.Value >= 100) {
+                timer1.Stop();
+                textBox1.Show();
+                textBox1.Text = "Loading is done baby!";
+            }
         }
     }
 }
